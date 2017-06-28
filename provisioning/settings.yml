@@ -1,0 +1,14 @@
+---
+vagrant_user: vagrant
+user: jonsnow
+ssh_pass_phrase: ""
+
+dev_droplet_ip: 0.0.0.0 #dummy
+test_droplet_ip:  0.0.0.0 #dummy
+
+# Node settings
+node_version: 8.1.0
+n_repo: https://github.com/visionmedia/n
+
+use_ssl: false
+server_name:

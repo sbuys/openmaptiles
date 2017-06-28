@@ -1,0 +1,5 @@
+---
+# Test connection:
+# ansible local -m ping -i hosts/dev_hosts.yml -vvvv
+[local]
+default ansible_ssh_host=10.0.0.10 ansible_python_interpreter=python

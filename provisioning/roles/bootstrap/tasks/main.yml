@@ -1,0 +1,35 @@
+---
+#http://docs.ansible.com/ansible/intro_installation.html
+- name: apt-get update 
+  raw: apt-get update -qq 
+
+- name: Install python 2.7 
+  raw: apt-get install -qq python2.7
+
+# Docker
+- name: Install packages for docker
+  raw:  sudo apt-get install \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        software-properties-common
+
+- name: Add Docker's official GPG key
+  raw: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# Todo: verify key fingerprint
+
+- name: Setup stable docker repo
+  raw: sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+
+# Update apt
+- name: apt-get update 
+  raw: apt-get update
+
+# Install docker
+- name: Install docker
+  raw: sudo apt-get install docker-ce
+
+# Install OpenMapTiles tools
+- name: Install openmaptiles tools
+  raw: pip install openmaptiles-tools

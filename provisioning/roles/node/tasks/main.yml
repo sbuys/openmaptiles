@@ -1,0 +1,27 @@
+---
+#https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories
+#- name: Install Node.js v0.12 Ubuntu repo
+#  shell: curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
+#  - name: ensure make is installed 
+#    apt: pkg=make state=latest update_cache=yes
+#
+#  - name: ensure curl is installed
+#    apt: pkg=curl state=latest
+#
+#  - name: ensure git is installed 
+#    apt: pkg=git-core state=latest update_cache=yes
+#    
+  - name: download n
+    git: repo={{n_repo}} dest=/tmp/n
+
+  - name: install n
+    command: make -C /tmp/n
+
+  - name: install node
+    command: n {{node_version}}
+
+  - name: install g++
+    apt: pkg=g++ state=latest update_cache=yes
+
+  - name: Ensure gulp is installed globally
+    npm: name=gulp state=present global=yes

@@ -1,0 +1,40 @@
+---
+   # Update repositories cache and install nginx package
+  - name: Setup nginx reverse proxy server
+    apt: name=nginx update_cache=yes state=present
+
+  # Config from https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-14-04
+  - name: Install nginx standard config
+    when: use_ssl == false
+    template: src=default.conf dest=/etc/nginx/sites-available/default
+    notify:
+      - restart nginx
+
+  # Diffie-Hellman parameter for DHE ciphersuites, recommended 2048 bits
+  - name: SSL >> Diffie-Hellman parameter for DHE ciphersuites
+    when: use_ssl == true
+    command: openssl dhparam -outform pem -out /etc/ssl/certs/dhparam.pem 2048
+
+  - name: Create directory for SSL certs
+    when: use_ssl == true
+    file: path=/etc/nginx/ssl state=directory mode=0755
+
+  - name: Install nginx ssl certs
+    when: use_ssl == true
+    template: src={{item}} dest=/etc/nginx/ssl/{{item}}
+    with_items:
+      - "{{ssl_certificate}}"
+      - "{{ssl_certificate_key}}"
+      - "{{ssl_bundle_certificate}}"
+
+  - name: Install nginx ssl config
+    when: use_ssl == true
+    template: src=default_ssh.j2.conf dest=/etc/nginx/sites-available/default
+    notify:
+      - restart nginx
+
+  - name: Ensure shared uploads directory exists
+    file: path=/home/jonsnow/www/shared/uploads state=directory owner={{user}} group=wheel
+
+  - name: Ensure shared generated directory exists
+    file: path=/home/jonsnow/www/shared/generated state=directory owner={{user}} group=wheel

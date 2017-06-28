@@ -1,0 +1,13 @@
+---
+- name: Install ansible
+  apt: name=ansible state=present
+
+- name: Install pip
+  apt: name=python-pip state=present update_cache=yes
+
+- name: Install six
+  pip: name=six
+
+# https://github.com/Wiredcraft/dopy
+- name: Install dopy
+  pip: name=dopy version=0.3.5

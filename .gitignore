@@ -7,9 +7,18 @@ data.xml
 # quickstart
 quickstart.log
 
+# Vagrant
+.vagrant
+.retry
+
 
 # imput / output data
-data/*
+src/data/*
 
 # generated source files
-build/*
+src/build/*
+
+# Cruft
+.DS_Store
+npm-debug.log
+.idea

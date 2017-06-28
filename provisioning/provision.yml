@@ -1,0 +1,9 @@
+# provisioning playbook
+---
+- hosts: local
+  vars_files:
+    - settings.yml
+  roles:
+    - bootstrap
+    - general
+    - node
