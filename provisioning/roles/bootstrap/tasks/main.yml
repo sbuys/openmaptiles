@@ -27,8 +27,9 @@
   raw: apt-get update
 
 # Install docker
-- name: Install docker
-  raw: sudo apt-get install docker-ce
+  - name: Install docker
+#  raw: sudo apt-get install docker-ce
+  apt: name=docker-ce state=present
 
 # Install OpenMapTiles tools
 - name: Install openmaptiles tools
