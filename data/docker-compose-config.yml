@@ -1,0 +1,9 @@
+version: "2"
+services:
+  generate-vectortiles:
+    environment:
+      BBOX: " 12.2550862, 36.3852967, 29.6194270, 45.9089096"
+      OSM_MAX_TIMESTAMP : "2017-06-28T20:31:10Z"
+      OSM_AREA_NAME: "albania"
+      MIN_ZOOM: "0"
+      MAX_ZOOM: "7"

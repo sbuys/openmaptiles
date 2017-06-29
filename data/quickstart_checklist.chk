@@ -1,0 +1,7 @@
+c0de23c69af695bc6a797efd1aed5f41  build/mapping.yaml
+342fa7e84953d8689fc2f40c9588b5c6  build/tileset.sql
+d927b64ae4ddc52080c7b3c46cc40072  build/openmaptiles.tm2source/data.yml
+c37588b264f98ea799a28e4092c9591b  ./data/albania.osm.pbf
+9064e1f6afb3a42514a55044da9b2595  ./data/tiles.mbtiles
+33ed063a7c346f8bef613acf92133397  ./data/docker-compose-config.yml
+f081ef6a2fa6a3088f9d0af7e130c495  ./data/osmstat.txt

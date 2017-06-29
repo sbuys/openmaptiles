@@ -6,13 +6,17 @@
 - name: Install python 2.7 
   raw: apt-get install -qq python2.7
 
+- name: Install pip
+  apt: name=python-pip state=present update_cache=yes
+
 # Docker
 - name: Install packages for docker
-  raw:  sudo apt-get install \
-        apt-transport-https \
-        ca-certificates \
-        curl \
-        software-properties-common
+  apt: name={{item}} state=installed
+  with_items:
+       - apt-transport-https
+       - ca-certificates
+       - curl
+       - software-properties-common
 
 - name: Add Docker's official GPG key
   raw: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -27,10 +31,16 @@
   raw: apt-get update
 
 # Install docker
-  - name: Install docker
+- name: Install docker
 #  raw: sudo apt-get install docker-ce
   apt: name=docker-ce state=present
+
+- name: Install docker-compose
+  raw: pip install docker-compose
 
 # Install OpenMapTiles tools
 - name: Install openmaptiles tools
   raw: pip install openmaptiles-tools
+
+- name: Install bc
+  apt: name=bc state=present

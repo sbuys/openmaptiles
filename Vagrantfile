@@ -24,13 +24,13 @@ Vagrant.configure(2) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 80, host: 8080
 
   # Express server
-  config.vm.network "forwarded_port", guest: 1234, host: 1234
+  # config.vm.network "forwarded_port", guest: 4321, host: 4321
 
   # Webpack dev server
-  config.vm.network "forwarded_port", guest: 4321, host: 4321
+  # config.vm.network "forwarded_port", guest: 4321, host: 4321
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -58,7 +58,7 @@ Vagrant.configure(2) do |config|
   # argument is a set of non-required options.
   # https://github.com/mitchellh/vagrant/issues/4362
   # config.vm.synced_folder ".", "/vagrant", disabled: true
-  config.vm.synced_folder "./src", "/synced", disabled: false
+  config.vm.synced_folder ".", "/shared", disabled: false
 
   #config.vm.synced_folder "./app", "/app", :mount_options => ["dmode=777","fmode=766"], type: "rsync", rsync__auto: true, rsync__exclude: [".git/", "node_modules/", "build/", "media/"], rsync__args: ["--verbose", "--archive", "--delete", "-z"]
 
